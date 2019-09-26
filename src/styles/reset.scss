@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+div,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+  box-sizing: border-box;
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+img{
+  vertical-align: top;
+}
+
+figure{
+  margin: 0;
+}
+
+fieldset{
+  border: 0;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+//button reset
+button{
+  border: 0;
+  padding: 0;
+}
+
+//stop ios safari styling of buttons etc.
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+.input-checkbox,
+button {
+  -webkit-appearance: none;
+  border-radius: 0;
+}

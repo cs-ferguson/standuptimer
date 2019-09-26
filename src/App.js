@@ -10,35 +10,63 @@ const App = () => {
 
   const storage = new Storage();
 
-  const getTeam = () => {
+  const getTeams = () => {
     //check storage
     if( storage.retrieve(`standupTimer`) ){
       let store = storage.retrieve(`standupTimer`);
-      if( store.items.myTeam ){
-        if( store.items.myTeam.length > 0 ){
-          return store.items.myTeam;
+      if( store.items.teams ){
+        if( store.items.teams.length > 0 ){
+          return store.items.teams;
         }
       }
     }
 
     return [
       {
-        name: 'Team Member Here...',
-        active: true
+        name: 'My Team',
+        members: [
+          {
+            name: 'Team Member Here...',
+            active: true,
+            speech: 'Team Member',
+            mediaUrl: null
+          }
+        ]
+      },
+      {
+        name: 'My Second Team',
+        members: [
+          {
+            name: 'Team Member Here...',
+            active: true,
+            speech: 'Team Member',
+            mediaUrl: null
+          }
+        ]
       }
-    ];
+    ]
   }
+
+  let colors = ( typeof window !== 'undefined' && typeof document !== 'undefined' ) ? {
+    white: '#fff',
+    backgroundColor: window.getComputedStyle(document.documentElement).getPropertyValue('--background-color'),
+    highlightOne: window.getComputedStyle(document.documentElement).getPropertyValue('--highlight-one')
+  } : {} ;
 
   const initialState = {
     mode: 'start',
-    team: getTeam()
+    teams: getTeams(),
+    currentTeam: 0,
+    colors: colors
   }
+
+  console.log(getTeams());
 
   return (
     <StateProvider reducer={reducer} initialState={initialState}>
-      <div className="App">
+      <main className="app">
         <StandupTimer />
-      </div>
+      </main>
     </StateProvider>
   );
 }

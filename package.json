@@ -2,7 +2,7 @@
   "name": "standuptimer",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/cs-ferguson/standuptimer",
+  "homepage": "https://chris-f.com/standuptimer",
   "dependencies": {
     "gh-pages": "^2.1.1",
     "moment": "^2.24.0",

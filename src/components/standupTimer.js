@@ -4,10 +4,11 @@ import { useStateValue } from "../hooks/useGlobalState";
 
 import TeamList from "./teamlist";
 import Standup from "./standup";
+import Header from "./header";
 
 const StandupTimer = () => {
 
-  const [{mode, team}, dispatch] = useStateValue();
+  const [{mode, teams, currentTeam}, dispatch] = useStateValue();
   const [people, setPeople] = useState();
 
   const shufflePeople = (people) => {
@@ -22,7 +23,7 @@ const StandupTimer = () => {
 
   const startStandUp = () => {
     let newPeople = [];
-    team.forEach( member => {
+    teams[currentTeam].members.forEach( member => {
       if( member.active ){
         newPeople.push( member );
       }
@@ -32,12 +33,14 @@ const StandupTimer = () => {
   }
 
 
+
   if(mode == 'start'){
     return (
-      <div>
+      <>
+        <Header />
         <TeamList />
         <button onClick={ startStandUp } type="button">Start Stand-up</button>
-      </div>
+      </>
     )
   } else {
     return (
