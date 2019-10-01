@@ -2,7 +2,7 @@
   --rhino-blue: #37456B;
   --watermelon-red: #fe5668;
   --topaz: #ffc368;
-  --pweter-blue: #8DA7BE;
+  --pewter-blue: #8DA7BE;
 
   --eerie-black: #101020;
   --gunmetal: #2C2C33;
@@ -13,4 +13,6 @@
 
   --background-color: var(--gunmetal);
   --highlight-one: var(--giants-orange);
+  --lowlight-one: var(--pewter-blue);
+  --gradient-one: linear-gradient(60deg, var(--giants-orange), var(--watermelon-red));
 }

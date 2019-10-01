@@ -6,6 +6,9 @@ import TeamList from "./teamlist";
 import Standup from "./standup";
 import Header from "./header";
 
+import styles from "./standuptimer.module.scss";
+import formStyles from "./forms.module.scss";
+
 const StandupTimer = () => {
 
   const [{mode, teams, currentTeam}, dispatch] = useStateValue();
@@ -39,7 +42,9 @@ const StandupTimer = () => {
       <>
         <Header />
         <TeamList />
-        <button onClick={ startStandUp } type="button">Start Stand-up</button>
+        <div className={ styles.startButton }>
+          <button onClick={ startStandUp } type="button" className={ formStyles.textButton }>Start Stand-up</button>
+        </div>
       </>
     )
   } else {

@@ -3,9 +3,12 @@ import React, {useState, useEffect, useRef} from "react";
 import { useStateValue } from "../hooks/useGlobalState";
 
 import EditMember from "./editMember";
+import RubbishIcon from "./icons/rubbish";
+import ChevronIcon from "./icons/chevron";
 import styles from "./member.module.scss";
+import formStyles from "./forms.module.scss";
 
-const Member = ({name, active, memberIndex, lastMember}) => {
+const Member = ({name, active, speech, mediaUrl, memberIndex, lastMember}) => {
 
   const [{team, mode, colors}, dispatch] = useStateValue();
   const [inputValue, setInputValue] = useState(name);
@@ -17,7 +20,7 @@ const Member = ({name, active, memberIndex, lastMember}) => {
     if(e.target.value.length > -1){
       //remove error class
       e.target.classList.remove('error');
-      return dispatch({type: 'UPDATE_MEMBER', name: e.target.value, active: active, memberIndex: memberIndex})
+      return dispatch({type: 'UPDATE_MEMBER', name: e.target.value, active: active, speech: speech, mediaUrl: mediaUrl, memberIndex: memberIndex})
     } else {
       e.target.classList.add('error');
     }
@@ -35,17 +38,19 @@ const Member = ({name, active, memberIndex, lastMember}) => {
     }
   }
 
-  const removeButton = (memberIndex > 0) ? <button type="button" onClick={ onRemoveButtonPress } tabIndex="-1">Remove</button> : null ;
-  const editButton = (editing) ? <button onClick={ () => setEditing(false) }>Hide</button> : <button onClick={ () => setEditing(true) }>More</button>
-  const editForm = (editing) ? <EditMember memberIndex={ memberIndex } name={ name } /> : null ;
+  const removeButton = (memberIndex > 0) ? <button type="button" onClick={ onRemoveButtonPress } className={ formStyles.iconButton } tabIndex="-1"><RubbishIcon color={`#fff`} /></button> : null ;
+
+  const editButton = (editing) ? <button onClick={ () => setEditing(false) } className={ formStyles.iconButton } tabIndex="-1"><ChevronIcon color={`#fff`} rotation={180} /></button> : <button onClick={ () => setEditing(true) } className={ formStyles.iconButton } tabIndex="-1"><ChevronIcon color={`#fff`} rotation={0} /></button>
+
+  const editForm = (editing) ? <EditMember memberIndex={ memberIndex } name={ name } speech={ speech } mediaUrl={ mediaUrl } active={ active } /> : null ;
+
   //styles
-  const elStyles = { height: '2.2rem', border: `1px solid transparent`, padding: '0 0.5rem' };
+  const elStyles = { height: '2.5rem', border: `1px solid transparent`, padding: `0.5rem 0.5rem 0 0.5rem` };
   if( editing ){
     elStyles.height = '8rem';
     elStyles.border = `1px solid ${ colors.highlightOne }`;
-    elStyles.padding = `0.5rem 0.5rem`;
+    elStyles.padding = `0.5rem 0.5rem 0.5rem 0.5rem`;
   }
-
 
 
   //use effect hook
@@ -58,11 +63,13 @@ const Member = ({name, active, memberIndex, lastMember}) => {
 
   return(
     <div style={ elStyles } className={ styles.member }>
-      <div>
-        <input type="checkbox" data-member-index={memberIndex} onChange={ (e) => { onActiveInputChange(e) } } checked={ active }/>
+      <div className={styles.memberHeader}>
+        <input type="checkbox" id={`active-checkbox-${memberIndex}`} data-member-index={memberIndex} onChange={ (e) => { onActiveInputChange(e) } } checked={ active }/><label htmlFor={`active-checkbox-${memberIndex}`}></label>
         <input type="text" data-member-index={memberIndex} value={name} onChange={ (e) => { onNameInputChange(e)} } ref={ inputEl } />
-        { editButton }
-        { removeButton }
+        <div className={ styles.buttonsCont }>
+          { editButton }
+          { removeButton }
+        </div>
       </div>
       { editForm }
     </div>

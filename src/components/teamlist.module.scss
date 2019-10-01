@@ -1,5 +1,6 @@
 .teamlistCont{
   width: 100%;
+  max-width: 30rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,13 +12,19 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 
   >input{
+    flex-grow: 1;
     text-align: center;
     font-size: 1.6rem;
     margin: 1rem;
     height: 2.2rem;
     line-height: 2.2rem;
+  }
+  >button{
+    flex-basis: 1.2rem;
+    flex-grow: 0;
   }
 }
 
@@ -26,4 +33,23 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
+  width: 100%;
+  padding: 0 2rem 2rem 2rem;
+}
+
+.addNewMemberButton{
+  background: var(--gradient-one);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  >svg{
+    height: 1rem;
+    width: 1rem;
+    display: inline;
+    margin-right: 0.5rem;
+  }
 }

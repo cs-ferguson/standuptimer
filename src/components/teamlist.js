@@ -3,7 +3,10 @@ import React, { useRef } from "react";
 import { useStateValue } from "../hooks/useGlobalState";
 
 import Member from "./member";
+import AddPersonIcon from "./icons/addPerson";
+import ChevronIcon from "./icons/chevron";
 import styles from "./teamlist.module.scss";
+import formStyles from "./forms.module.scss";
 
  const TeamList = () => {
 
@@ -23,10 +26,10 @@ import styles from "./teamlist.module.scss";
   const teamDeets = teams[currentTeam].members.map( (member, index) => {
     //set if last member
     let lastMember = (index === teams[currentTeam].members.length - 1) ? true : false ;
-    return <Member key={`member_${index}`} name={member.name} memberIndex={index} active={member.active} lastMember={lastMember} />;
+    return <Member key={`member_${index}`} name={member.name} memberIndex={index} active={member.active} speech={ member.speech } mediaUrl={ member.mediaUrl } lastMember={lastMember} />;
   })
 
-  let addNewMemberButton = (hideAddButton()) ? null : <button className="addNew" type="button" onClick={ () => dispatch({ type: 'ADD_TEAM_MEMBER'})}>Add another</button>;
+  let addNewMemberButton = (hideAddButton()) ? null : <button className={`${styles.addNewMemberButton} ${ formStyles.textButton }`} type="button" onClick={ () => dispatch({ type: 'ADD_TEAM_MEMBER'})}><AddPersonIcon color={`#fff`} />Add another</button>;
 
   let prevTeamButtonDisabled = ( currentTeam > 0 ) ? false : true ;
   let nextTeamButtonDisabled = ( currentTeam < teams.length - 1 ) ? false : true ;
@@ -34,9 +37,13 @@ import styles from "./teamlist.module.scss";
   return(
     <section className={ styles.teamlistCont }>
       <div className={ styles.teamSelect }>
-        <button onClick={ () => dispatch({ type: 'MOVE_TO_PREV_TEAM' }) } disabled={ prevTeamButtonDisabled}>&lt;</button>
+        <button onClick={ () => dispatch({ type: 'MOVE_TO_PREV_TEAM' }) } disabled={ prevTeamButtonDisabled } className={ formStyles.iconButton }>
+          <ChevronIcon color={`#fff`} rotation={ 90 }/>
+        </button>
         <input type="text" value={ teams[currentTeam].name } onChange={ (e) => dispatch({ type: 'UPDATE_TEAM_NAME', teamName: e.target.value }) } />
-        <button onClick={ () => dispatch({ type: 'MOVE_TO_NEXT_TEAM' }) } disabled={ nextTeamButtonDisabled } >&gt;</button>
+        <button onClick={ () => dispatch({ type: 'MOVE_TO_NEXT_TEAM' }) } disabled={ nextTeamButtonDisabled } className={ formStyles.iconButton } >
+          <ChevronIcon color={`#fff`} rotation={ 270 }/>
+        </button>
       </div>
       <div ref={formEl} className={ styles.teamlist }>
         {teamDeets}

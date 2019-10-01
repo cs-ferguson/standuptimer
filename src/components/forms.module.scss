@@ -1,0 +1,31 @@
+.iconButton{
+  &:hover{
+    >svg{
+      stroke: var(--highlight-one);
+    }
+  }
+
+  &:disabled{
+    >svg{
+      stroke: var(--lowlight-one);
+    }
+  }
+}
+.textButton{
+  background: var(--gradient-one);
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s;
+
+  &:hover{
+    cursor: pointer;
+    background: var(--vanilla);
+    color: var(--background-color);
+
+    >svg{
+      stroke: var(--background-color);
+    }
+  }
+}

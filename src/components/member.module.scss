@@ -1,11 +1,50 @@
 .member{
   overflow: hidden;
   transition: height 0.6s ease-in-out, border 0.3s, padding 0.3s;
+  width: 100%;
+  margin-bottom: 0.25rem;
 
   input[type="text"]{
     font-size: 1.1rem;
     padding: 0 0.5rem;
   }
+}
+
+.memberHeader{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 1.8rem;
+
+  input[type="checkbox"]{
+    flex: 0 0 1.5rem;
+
+    & ~ input[type="text"]{
+      color: var(--lowlight-one);
+    }
+
+    &:checked ~ input[type="text"]{
+      color: inherit;
+    }
+  }
+
+  input[type="text"]{
+    flex-grow: 1;
+    height: 1.6rem;
+    line-height: 1.6rem;
+  }
+
+  button{
+    height: 1.1rem;
+    width: 1.1rem;
+    margin-left: 0.5rem;
+  }
+}
+
+.buttonsCont{
+  flex: 0 0 auto;
 }
 
 .editMember{

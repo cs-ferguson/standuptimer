@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 
 import SpeechAudio from "./speechAudio";
+import Clock from "./clock";
 import Audio from "./audio";
 
 const Timer = ({ person, timerRunning, nextTimer, lastTimer }) => {
 
+  const origDuration = 60000;
+
   const [mode, setMode] = useState('flasher');
   const [paused, setPaused] = useState( (timerRunning === false) ? true : false );
-  const [duration, setDuration] = useState(60000);
+  const [duration, setDuration] = useState(origDuration);
   const [time, setTime] = useState();
   const [endTime, setEndTime] = useState();
 
@@ -65,9 +68,6 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer }) => {
     }
   },[paused, time, endTime, mode]);
 
-  //time element
-  let timeDisplay = ( time ) ? time/1000 : duration/1000 ;
-
 
   if( mode == 'flasher' ){
     return(
@@ -86,10 +86,12 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer }) => {
   } else {
     return(
       <div>
-        <p style={{ fontVariantNumeric: 'tabular-nums', fontSize: '8rem' }}>{ timeDisplay }</p>
-        <p>{ person.name }</p>
-        <button type="button" onClick={pauseTimer}>Pause</button>
-        <button type="button" onClick={playTimer}>Play</button>
+        <Clock time={ time } duration={ origDuration }  />
+        <div>
+          <p>{ person.name }</p>
+          <button type="button" onClick={pauseTimer}>Pause</button>
+          <button type="button" onClick={playTimer}>Play</button>
+        </div>
       </div>
     )
   }

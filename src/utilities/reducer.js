@@ -24,7 +24,9 @@ export const reducer = (state, action) => {
         if( index === action.memberIndex ){
           return {
             name: action.name,
-            active: action.active
+            active: action.active,
+            speech: action.speech,
+            mediaUrl: action.mediaUrl
           }
         } else {
           return {
