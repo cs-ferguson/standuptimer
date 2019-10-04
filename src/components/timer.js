@@ -98,12 +98,15 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevBut
     }
   };
 
+  //set speech word
+  const speechWord = ( person.speech ) ? person.speech : person.name ;
+
 
   if( mode == 'flasher' ){
     return(
       <div>
         <h1 style={{ fontSize: '8rem' }}>{ person.name }</h1>
-        <SpeechAudio word={person.name} />
+        <SpeechAudio word={ speechWord } /> 
       </div>
     )
   } else if (mode == 'finished'){

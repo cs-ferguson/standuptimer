@@ -31,7 +31,9 @@ export const reducer = (state, action) => {
         } else {
           return {
             name: member.name,
-            active: member.active
+            active: member.active,
+            speech: member.speech,
+            mediaUrl: member.mediaUrl
           }
         }
       })
@@ -51,7 +53,9 @@ export const reducer = (state, action) => {
     case 'ADD_TEAM_MEMBER':
       newTeamMembers = state.teams[state.currentTeam].members.concat({
         name: '',
-        active: true
+        active: true,
+        speech: null,
+        mediaUrl: null
       })
       //create new teams array
       newTeams = state.teams.map( (team,index) => {
