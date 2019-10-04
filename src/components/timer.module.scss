@@ -1,0 +1,45 @@
+.timer{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock{
+  flex-basis: 50vw;
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  >svg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.timerButtons{
+  flex-basis: 6rem;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .timerName{
+    flex-basis: 100%;
+    text-align: center;
+  }
+}
+
+.timerNumbers{
+  font-size: calc(2.2rem + (8 - 2.2) * (100vw - 18rem) / (94 - 18));
+}

@@ -50,7 +50,8 @@ const App = () => {
   let colors = ( typeof window !== 'undefined' && typeof document !== 'undefined' ) ? {
     white: '#fff',
     backgroundColor: window.getComputedStyle(document.documentElement).getPropertyValue('--background-color'),
-    highlightOne: window.getComputedStyle(document.documentElement).getPropertyValue('--highlight-one')
+    highlightOne: window.getComputedStyle(document.documentElement).getPropertyValue('--highlight-one'),
+    lowlightOne: window.getComputedStyle(document.documentElement).getPropertyValue('--lowlight-one')
   } : {} ;
 
   const initialState = {

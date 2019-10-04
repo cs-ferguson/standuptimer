@@ -4,8 +4,14 @@ import moment from "moment";
 import SpeechAudio from "./speechAudio";
 import Clock from "./clock";
 import Audio from "./audio";
+import PlayIcon from "./icons/play";
+import PauseIcon from "./icons/pause";
+import ResetIcon from "./icons/reset";
 
-const Timer = ({ person, timerRunning, nextTimer, lastTimer }) => {
+import styles from './timer.module.scss';
+import formStyles from './forms.module.scss';
+
+const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevButton }) => {
 
   const origDuration = 60000;
 
@@ -23,6 +29,13 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer }) => {
     setPaused(true);
     setEndTime( null );
     setDuration( time );
+  }
+
+  const resetTimer = () => {
+    setPaused(true);
+    setEndTime( null );
+    setTime( origDuration );
+    setDuration( origDuration );
   }
 
   useEffect( () => {
@@ -69,6 +82,23 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer }) => {
   },[paused, time, endTime, mode]);
 
 
+  const playPauseButton = () => {
+    if( !paused ){
+      return(
+        <button type="button" onClick={pauseTimer} className={ formStyles.iconButton }>
+          <PauseIcon color={`#fff`} />
+        </button>
+      )
+    } else {
+      return(
+        <button type="button" onClick={playTimer} className={ formStyles.iconButton }>
+          <PlayIcon color={`#fff`} />
+        </button>
+      )
+    }
+  };
+
+
   if( mode == 'flasher' ){
     return(
       <div>
@@ -85,12 +115,16 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer }) => {
     )
   } else {
     return(
-      <div>
-        <Clock time={ time } duration={ origDuration }  />
-        <div>
-          <p>{ person.name }</p>
-          <button type="button" onClick={pauseTimer}>Pause</button>
-          <button type="button" onClick={playTimer}>Play</button>
+      <div className={ styles.timer }>
+        <Clock time={ time } duration={ origDuration } />
+        <div className={ styles.timerButtons }>
+          { prevButton }
+          { playPauseButton() }
+          <button type="button" onClick={resetTimer} className={ formStyles.iconButton }>
+            <ResetIcon />
+          </button>
+          { nextButton }
+          <p className={ styles.timerName }>{ person.name }</p>
         </div>
       </div>
     )
