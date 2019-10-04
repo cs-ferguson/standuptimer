@@ -51,7 +51,12 @@ const App = () => {
     white: '#fff',
     backgroundColor: window.getComputedStyle(document.documentElement).getPropertyValue('--background-color'),
     highlightOne: window.getComputedStyle(document.documentElement).getPropertyValue('--highlight-one'),
-    lowlightOne: window.getComputedStyle(document.documentElement).getPropertyValue('--lowlight-one')
+    lowlightOne: window.getComputedStyle(document.documentElement).getPropertyValue('--lowlight-one'),
+    vanilla: window.getComputedStyle(document.documentElement).getPropertyValue('--vanilla'),
+    flax: window.getComputedStyle(document.documentElement).getPropertyValue('--flax'),
+    neonCarrot: window.getComputedStyle(document.documentElement).getPropertyValue('--neon-carrot'),
+    giantsOrange: window.getComputedStyle(document.documentElement).getPropertyValue('--giants-orange'),
+    watermelonRed: window.getComputedStyle(document.documentElement).getPropertyValue('--watermelon-red'),
   } : {} ;
 
   const initialState = {
