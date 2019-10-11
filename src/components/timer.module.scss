@@ -43,3 +43,91 @@
 .timerNumbers{
   font-size: calc(2.2rem + (8 - 2.2) * (100vw - 18rem) / (94 - 18));
 }
+
+.largeNotice{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-start;
+
+  h1{
+    margin: 0;
+    font-size: calc(2.2rem + (8 - 2.2) * (100vw - 18rem) / (94 - 18));
+    max-width: 54rem;
+    line-height: 1.5;
+  }
+
+  &.gong{
+    justify-content: center;
+    h1{
+      color: var(--watermelon-red);
+      text-transform: uppercase;
+    }
+  }
+
+  >img{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.flasher{
+  h1{
+    >span{
+      display: inline;
+      white-space: pre-wrap;
+      background-color: var(--watermelon-red);
+      line-height: 1.25;
+      animation-name:flash;
+		  animation-duration:1.5s;
+		  animation-delay: 0.3s;
+		  animation-timing-function: step-end;
+		  animation-iteration-count: infinite;
+    }
+  }
+}
+
+@keyframes flash{
+	0% {
+		background-color: var(--flash-one);
+	}
+  10% {
+    background-color: var(--flash-two);
+  }
+	20% {
+		background-color: var(--flash-three);
+	}
+	30% {
+		background-color: var(--flash-one);
+	}
+	40% {
+		background-color: var(--flash-three);
+	}
+	50% {
+		background-color: var(--flash-two);
+	}
+	60% {
+		background-color: var(--flash-one);
+	}
+	70% {
+		background-color: var(--flash-two);
+	}
+	80% {
+		background-color: var(--flash-three);
+	}
+	90% {
+		background-color: var(--flash-two);
+	}
+	100% {
+		background-color: var(--flash-three);
+	}
+}

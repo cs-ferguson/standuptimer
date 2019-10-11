@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 
+import { useStateValue } from "../hooks/useGlobalState";
+
 import SpeechAudio from "./speechAudio";
 import Clock from "./clock";
 import Audio from "./audio";
@@ -13,7 +15,7 @@ import formStyles from './forms.module.scss';
 
 const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevButton }) => {
 
-  const origDuration = 60000;
+  const [{origDuration, gongMessage, gongMediaUrl, gongMediaActive}, dispatch] = useStateValue();
 
   const [mode, setMode] = useState('flasher');
   const [paused, setPaused] = useState( (timerRunning === false) ? true : false );
@@ -101,20 +103,24 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevBut
   //set speech word
   const speechWord = ( person.speech ) ? person.speech : person.name ;
 
+  //set gong background
+  const gongMedia = ( gongMediaActive && gongMediaUrl ) ? <img src={ gongMediaUrl } /> : null ;
+
 
   if( mode == 'flasher' ){
     return(
-      <div>
-        <h1 style={{ fontSize: '8rem' }}>{ person.name }</h1>
-        <SpeechAudio word={ speechWord } /> 
+      <div className={ `${styles.largeNotice} ${styles.flasher}` }>
+        <h1><span>{ person.name }</span></h1>
+        <SpeechAudio word={ speechWord } />
       </div>
     )
   } else if (mode == 'finished'){
     return(
-      <>
-        <p>You done!</p>
+      <div className={ `${styles.largeNotice} ${styles.gong}` }>
+        <h1>{ gongMessage }</h1>
+        { gongMedia }
         <Audio src='assets/end_bell_1.mp3' />
-      </>
+      </div>
     )
   } else {
     return(

@@ -1,6 +1,6 @@
 {
   "name": "standuptimer",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "private": true,
   "homepage": "https://chris-f.com/standuptimer",
   "dependencies": {

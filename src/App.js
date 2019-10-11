@@ -63,7 +63,11 @@ const App = () => {
     mode: 'start',
     teams: getTeams(),
     currentTeam: 0,
-    colors: colors
+    colors: colors,
+    origDuration: 60000,
+    gongMessage: 'Please stop',
+    gongMediaUrl: 'https://media.giphy.com/media/XBgZuQGJWXuww/giphy.gif',
+    gongMediaActive: false,
   }
 
   console.log(getTeams());

@@ -46,7 +46,7 @@ const Clock = ({ time, duration }) => {
     <div className={ styles.clock }>
       <svg viewBox="0 0 36 36" style={{ transform: 'scaleX(-1)' }}>
         <circle className="stroke" cx="18" cy="18" r="16" fill="transparent" stroke="#000" strokeOpacity="0.15" strokeWidth="1"></circle>
-        <circle className="stroke" cx="18" cy="18" r="16" fill="transparent" stroke={ stroke(percProgress) } strokeWidth="1" strokeDasharray={(percProgress * 100) + " " + ((1-percProgress) * 100)} strokeDashoffset="0" transform="rotate(-88 18 18)" style={{  transition: `9s stroke` }}></circle>
+        <circle className="stroke" cx="18" cy="18" r="16" fill="transparent" stroke={ stroke(percProgress) } strokeWidth="1" strokeDasharray={`${percProgress * 100.5} ${((1-percProgress) * 100.5)}`} strokeDashoffset="0" transform="rotate(-88 18 18)" style={{  transition: `9s stroke` }}></circle>
       </svg>
       <p className={ styles.timerNumbers } style={{ color: stroke(percProgress), transition: `9s color` }}>{ secs }.<span className="ms">{ ms }</span></p>
     </div>
