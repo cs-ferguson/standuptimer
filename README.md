@@ -1,7 +1,7 @@
 # The Standup Timer
 A stand-up timer for scrums/stand-ups.
 
-##Features
+## Features
 * Multiple teams
 * Toggle attendance
 * Modify timer length
