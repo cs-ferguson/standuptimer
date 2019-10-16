@@ -95,14 +95,10 @@ const App = () => {
 
   return (
     <StateProvider reducer={reducer} initialState={initialState}>
-      <Router>
+      <Router basename={ process.env.PUBLIC_URL }>
         <Switch>
-          <Route path={ process.env.PUBLIC_URL + '/mysettings' }>
-            <Settings />
-          </Route>
-          <Route path="/">
-            <StandupTimer />
-          </Route>
+          <Route exact path="/" component={StandupTimer} />
+          <Route path="/settings" component={Settings} />
         </Switch>
       </Router>
     </StateProvider>
