@@ -109,6 +109,41 @@ export const reducer = (state, action) => {
         ...state,
         currentTeam: state.currentTeam + 1
       }
+    case 'UPDATE_DURATION':
+      //store
+      let newSettings = {
+        ...state.settings,
+        origDuration: action.value
+      }
+      storage.store( 'settings', 'standupTimer', newSettings );
+      return{
+        ...state,
+        settings: newSettings
+      }
+    case 'UPDATE_GONG_MESSAGE': {
+      //store
+      let newSettings = {
+        ...state.settings,
+        gongMessage: action.value
+      }
+      storage.store( 'settings', 'standupTimer', newSettings );
+      return{
+        ...state,
+        settings: newSettings
+      }
+    }
+    case 'UPDATE_GONG_MEDIA_URL': {
+      //store
+      let newSettings = {
+        ...state.settings,
+        gongMediaUrl: action.value
+      }
+      storage.store( 'settings', 'standupTimer', newSettings );
+      return{
+        ...state,
+        settings: newSettings
+      }
+    }
     default:
       return state
   }

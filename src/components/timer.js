@@ -15,11 +15,11 @@ import formStyles from './forms.module.scss';
 
 const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevButton }) => {
 
-  const [{origDuration, gongMessage, gongMediaUrl, gongMediaActive}, dispatch] = useStateValue();
+  const [{settings, imageExtensions, videoExtensions}, dispatch] = useStateValue();
 
   const [mode, setMode] = useState('flasher');
   const [paused, setPaused] = useState( (timerRunning === false) ? true : false );
-  const [duration, setDuration] = useState(origDuration);
+  const [duration, setDuration] = useState(settings.origDuration);
   const [time, setTime] = useState();
   const [endTime, setEndTime] = useState();
 
@@ -36,8 +36,8 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevBut
   const resetTimer = () => {
     setPaused(true);
     setEndTime( null );
-    setTime( origDuration );
-    setDuration( origDuration );
+    setTime( settings.origDuration );
+    setDuration( settings.origDuration );
   }
 
   useEffect( () => {
@@ -103,29 +103,93 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevBut
   //set speech word
   const speechWord = ( person.speech ) ? person.speech : person.name ;
 
-  //set gong background
-  const gongMedia = ( gongMediaActive && gongMediaUrl ) ? <img src={ gongMediaUrl } /> : null ;
+  //set gong background and message
+  const gongMessage = () => {
+    if( Array.isArray( settings.gongMessage ) && settings.gongMessage.length > 0 ){
+      let msgIndex = 0;
+      if( settings.gongMessage.length > 1 ){
+        msgIndex = Math.floor( Math.random() * settings.gongMessage.length );
+      }
+      return settings.gongMessage[msgIndex];
+    }
+    return null;
+  }
+
+  const gongMedia = () => {
+    if( Array.isArray( settings.gongMediaUrl ) && settings.gongMediaUrl.length > 0 ){
+      //get index
+      let mediaIndex = 0;
+      if( settings.gongMediaUrl.length > 1 ){
+        mediaIndex = Math.floor( Math.random() * settings.gongMediaUrl.length );
+      }
+      //return media
+      let elements = [<Audio src='assets/end_bell_1.mp3' />];
+      let fileType = getFileType( settings.gongMediaUrl[mediaIndex] );
+      if( fileType ){
+        if( fileType === 'image' ){
+          elements.push(<img src={ settings.gongMediaUrl[mediaIndex] } />)
+        }
+        if( fileType === 'video' ){
+          elements = <video autoPlay='autoplay'>
+                      <source src={ settings.gongMediaUrl[mediaIndex] } />
+                    </video>
+        }
+      }
+      return elements;
+    }
+    return null;
+  }
+
+  //member media
+  const getFileType = (fileUrl) => {
+    let mediaExtension = fileUrl.split('.').pop();
+    if( imageExtensions.indexOf( mediaExtension ) > -1 ){
+      return 'image';
+    }
+    if( videoExtensions.indexOf( mediaExtension ) > -1 ){
+      return 'video';
+    }
+    return false;
+  }
+
+  const setMemberMedia = () => {
+    let elements = [<SpeechAudio word={ speechWord } />];
+    if( person.mediaUrl ){
+      let fileType = getFileType( person.mediaUrl );
+      if( fileType ){
+        if( fileType === 'image' ){
+          elements.push(<img src={ person.mediaUrl } />)
+        }
+        if( fileType === 'video' ){
+          elements = <video autoPlay='autoplay'>
+                      <source src={ person.mediaUrl } />
+                    </video>
+        }
+      }
+    }
+    return elements;
+  }
+
 
 
   if( mode == 'flasher' ){
     return(
       <div className={ `${styles.largeNotice} ${styles.flasher}` }>
         <h1><span>{ person.name }</span></h1>
-        <SpeechAudio word={ speechWord } />
+        { setMemberMedia() }
       </div>
     )
   } else if (mode == 'finished'){
     return(
       <div className={ `${styles.largeNotice} ${styles.gong}` }>
-        <h1>{ gongMessage }</h1>
-        { gongMedia }
-        <Audio src='assets/end_bell_1.mp3' />
+        <h1>{ gongMessage() }</h1>
+        { gongMedia() }
       </div>
     )
   } else {
     return(
       <div className={ styles.timer }>
-        <Clock time={ time } duration={ origDuration } />
+        <Clock time={ time } duration={ settings.origDuration } />
         <div className={ styles.timerButtons }>
           { prevButton }
           { playPauseButton() }

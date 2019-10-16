@@ -1,0 +1,40 @@
+.settings{
+  padding: 2rem;
+  width: 100%;
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.closeSettings{
+  position: fixed;
+  top: 0;
+  right: 0;
+  text-decoration: none;
+  color: #fff;
+  padding: 0.25rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+
+  &:visited{
+    color: #fff;
+  }
+
+  &:hover{
+    color: var(--highlight-one);
+
+    >svg{
+      stroke: var(--highlight-one);
+    }
+  }
+
+  >svg{
+    height: 100%;
+    width: 2rem;
+    object-fit: contain;
+    transition: 0.3s all;
+  }
+}

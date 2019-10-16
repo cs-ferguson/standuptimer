@@ -1,4 +1,5 @@
 body{
+  --header-height: 2.5rem;
   background: var(--gunmetal);
   color: #fff;
 }
@@ -11,8 +12,17 @@ main{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
+  min-height: calc(100vh - var(--header-height));
+}
+
+a{
+  transition: 0.3s all;
+  color: #fff;
+  &:visited{
+    color: #fff;
+  }
 }
 
 button{

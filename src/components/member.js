@@ -47,7 +47,7 @@ const Member = ({name, active, speech, mediaUrl, memberIndex, lastMember}) => {
   //styles
   const elStyles = { height: '2.5rem', border: `1px solid transparent`, padding: `0.5rem 0.5rem 0 0.5rem` };
   if( editing ){
-    elStyles.height = '8rem';
+    elStyles.height = '13rem';
     elStyles.border = `1px solid ${ colors.highlightOne }`;
     elStyles.padding = `0.5rem 0.5rem 0.5rem 0.5rem`;
   }

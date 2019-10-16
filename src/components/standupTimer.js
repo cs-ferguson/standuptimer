@@ -41,15 +41,19 @@ const StandupTimer = () => {
     return (
       <>
         <Header />
-        <TeamList />
-        <div className={ styles.startButton }>
-          <button onClick={ startStandUp } type="button" className={ formStyles.textButton }>Start Stand-up</button>
-        </div>
+        <main>
+          <TeamList />
+          <div className={ styles.startButton }>
+            <button onClick={ startStandUp } type="button" className={ formStyles.textButton }>Start Stand-up</button>
+          </div>
+        </main>
       </>
     )
   } else {
     return (
-      <Standup people={people} />
+      <main>
+        <Standup people={people} />
+      </main>
     )
   }
 }
