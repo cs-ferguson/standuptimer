@@ -2,6 +2,7 @@
 A stand-up timer for scrums/stand-ups.
 
 ## Features
+* Uses local storage to persist your settings
 * Multiple teams
 * Toggle attendance
 * Modify timer length

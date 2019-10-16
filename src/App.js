@@ -63,9 +63,9 @@ const App = () => {
     }
 
     return {
-      origDuration: 50000,
-      gongMessage: ['Please stop','Please stop now'],
-      gongMediaUrl: ['https://media.giphy.com/media/XBgZuQGJWXuww/giphy.gif'],
+      origDuration: 60000,
+      gongMessage: ['Please stop'],
+      gongMediaUrl: [],
     };
   }
 
@@ -97,7 +97,7 @@ const App = () => {
     <StateProvider reducer={reducer} initialState={initialState}>
       <Router>
         <Switch>
-          <Route path="/settings">
+          <Route path={ `${process.env.PUBLIC_URL}/settings` }>
             <Settings />
           </Route>
           <Route path="/">
