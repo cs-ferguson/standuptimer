@@ -97,7 +97,7 @@ const App = () => {
     <StateProvider reducer={reducer} initialState={initialState}>
       <Router>
         <Switch>
-          <Route path={ `${process.env.PUBLIC_URL}/settings` }>
+          <Route path={ process.env.PUBLIC_URL + '/mysettings' }>
             <Settings />
           </Route>
           <Route path="/">
