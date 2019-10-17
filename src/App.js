@@ -95,10 +95,11 @@ const App = () => {
 
   return (
     <StateProvider reducer={reducer} initialState={initialState}>
-      <Router basename={ process.env.PUBLIC_URL }>
+      <Router>
         <Switch>
           <Route exact path="/" component={StandupTimer} />
           <Route path="/settings" component={Settings} />
+          <Route component={ () => (<div>404 Not Found!</div>)} />
         </Switch>
       </Router>
     </StateProvider>
