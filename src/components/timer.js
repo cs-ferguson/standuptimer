@@ -116,6 +116,7 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevBut
   }
 
   const gongMedia = () => {
+    let elements = [<Audio src='assets/end_bell_1.mp3' />];
     if( Array.isArray( settings.gongMediaUrl ) && settings.gongMediaUrl.length > 0 ){
       //get index
       let mediaIndex = 0;
@@ -123,7 +124,7 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevBut
         mediaIndex = Math.floor( Math.random() * settings.gongMediaUrl.length );
       }
       //return media
-      let elements = [<Audio src='assets/end_bell_1.mp3' />];
+
       let fileType = getFileType( settings.gongMediaUrl[mediaIndex] );
       if( fileType ){
         if( fileType === 'image' ){
@@ -135,9 +136,8 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevBut
                     </video>
         }
       }
-      return elements;
     }
-    return null;
+    return elements;
   }
 
   //member media
