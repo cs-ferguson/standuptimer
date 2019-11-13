@@ -28,7 +28,7 @@ const Member = ({name, active, speech, mediaUrl, memberIndex, lastMember}) => {
 
   const onActiveInputChange = (e) => {
     let newActiveState = (e.target.checked) ? true : false ;
-    return dispatch({type: 'UPDATE_MEMBER', name: name, active: newActiveState, memberIndex: memberIndex})
+    return dispatch({type: 'UPDATE_MEMBER', name: name, active: newActiveState, speech: speech, mediaUrl: mediaUrl, memberIndex: memberIndex})
   }
 
   const onRemoveButtonPress = () => {
