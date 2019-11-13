@@ -44,6 +44,7 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevBut
     let clockInterval = null;
     let finishTimer = null;
 
+    //tick function
     const tick = () => {
       console.log('tick');
       let now = moment().format('x');
@@ -54,6 +55,18 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevBut
         setTime(0);
         setMode('finished');
 
+      }
+    }
+    //keypress handler
+    const keyPressHandler = (e) => {
+      //next
+      if( e.keyCode === 32 ){
+        if( paused ){
+          console.log('paused');
+          playTimer();
+        } else {
+          pauseTimer();
+        }
       }
     }
 
@@ -69,6 +82,7 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevBut
       }
     } else {
       //not flasher!!
+      window.addEventListener('keydown', keyPressHandler);
       if( !paused ){
         if( !endTime ){
           setEndTime( moment().add(duration,'ms').format('x') );
@@ -79,7 +93,10 @@ const Timer = ({ person, timerRunning, nextTimer, lastTimer, nextButton, prevBut
       } else {
         clearInterval(clockInterval)
       }
-      return () => clearInterval(clockInterval);
+      return () => {
+        clearInterval(clockInterval);
+        window.removeEventListener('keydown', keyPressHandler);
+      }
     }
   },[paused, time, endTime, mode]);
 
