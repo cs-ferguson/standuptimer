@@ -51,7 +51,8 @@ const TeamList = () => {
   );
 
   let prevTeamButtonDisabled = currentTeam > 0 ? false : true;
-  let nextTeamButtonDisabled = currentTeam < teams.length - 1 ? false : true;
+  let nextTeamButtonAction =
+    currentTeam < teams.length - 1 ? "MOVE_TO_NEXT_TEAM" : "ADD_NEW_TEAM";
 
   return (
     <section className={styles.teamlistCont}>
@@ -71,8 +72,7 @@ const TeamList = () => {
           }
         />
         <button
-          onClick={() => dispatch({type: "MOVE_TO_NEXT_TEAM"})}
-          disabled={nextTeamButtonDisabled}
+          onClick={() => dispatch({type: nextTeamButtonAction})}
           className={formStyles.iconButton}
         >
           <ChevronIcon color={`#fff`} rotation={270} />

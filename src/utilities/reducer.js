@@ -113,6 +113,25 @@ export const Reducer = (state, action) => {
         ...state,
         currentTeam: state.currentTeam + 1,
       };
+    case "ADD_NEW_TEAM":
+      newTeams = state.teams.concat({
+        name: `Team Name ${state.teams.length + 1}`,
+        members: [
+          {
+            name: "Team Member Here...",
+            active: true,
+            speech: "Team Member",
+            mediaUrl: null,
+          },
+        ],
+      });
+      //store
+      storage.store("teams", "standupTimer", newTeams);
+      return {
+        ...state,
+        teams: newTeams,
+        currentTeam: state.currentTeam + 1,
+      };
     case "UPDATE_DURATION":
       //store
       let newSettings = {

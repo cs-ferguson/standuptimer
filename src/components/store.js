@@ -17,7 +17,7 @@ const getTeams = () => {
 
   return [
     {
-      name: "My Team",
+      name: "My Team Name",
       members: [
         {
           name: "Team Member Here...",
@@ -28,7 +28,7 @@ const getTeams = () => {
       ],
     },
     {
-      name: "My Second Team",
+      name: "My Second Team Name",
       members: [
         {
           name: "Team Member Here...",
