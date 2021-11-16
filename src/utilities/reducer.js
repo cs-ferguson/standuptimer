@@ -5,6 +5,7 @@ export const Reducer = (state, action) => {
 
   let newTeams = null;
   let newTeamMembers = null;
+  let newCurrentTeam = null;
 
   switch (action.type) {
     case "START_STANDUP":
@@ -131,6 +132,23 @@ export const Reducer = (state, action) => {
         ...state,
         teams: newTeams,
         currentTeam: state.currentTeam + 1,
+      };
+    case "REMOVE_TEAM":
+      newTeams = [
+        ...state.teams.slice(0, action.teamIndex),
+        ...state.teams.slice(action.teamIndex + 1),
+      ];
+      //store
+      storage.store("teams", "standupTimer", newTeams);
+      //set currentTeam
+      newCurrentTeam =
+        state.currentTeam < newTeams.length
+          ? state.currentTeam
+          : newTeams.length - 1;
+      return {
+        ...state,
+        teams: newTeams,
+        currentTeam: newCurrentTeam,
       };
     case "UPDATE_DURATION":
       //store

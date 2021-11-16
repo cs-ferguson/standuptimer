@@ -45,7 +45,7 @@ input[type="text"]{
     >input{
       flex-basis: 12rem;
       flex-grow: 1;
-      padding: 0.25rem 0;
+      padding: 0.25rem;
       border-bottom: 1px solid var(--highlight-one);
       font-weight: 400;
     }
@@ -79,6 +79,7 @@ input[type="text"]{
 .iconButton{
   width: 3rem;
   height: 3rem;
+  margin: 0 0.25em;
   
   &:hover{
     >svg{
