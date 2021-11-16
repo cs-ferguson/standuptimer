@@ -3,12 +3,11 @@ import React from "react";
 import GithubIcon from "./icons/github";
 import CogIcon from "./icons/cog";
 
-import styles from "./header.module.scss"
+import styles from "./header.module.scss";
 
 const Header = () => {
-
-  return(
-    <header className={ styles.header }>
+  return (
+    <header className={styles.header}>
       <div className="logo">Standuptimer</div>
 
       <div>
@@ -16,13 +15,17 @@ const Header = () => {
           <CogIcon color="#fff" />
         </a>
 
-        <a className={styles.icon} href="https://github.com/cs-ferguson/standuptimer" target="_blank">
+        <a
+          className={styles.icon}
+          href="https://github.com/cs-ferguson/standuptimer"
+          target="_blank"
+          rel="noreferrer"
+        >
           <GithubIcon color="#fff" />
         </a>
       </div>
-
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

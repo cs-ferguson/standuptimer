@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 
-import { Context } from "./store";
+import {Context} from "./store";
 import styles from "./timer.module.scss";
 
-const Clock = ({ time, duration }) => {
-  const [{ colors }, dispatch] = useContext(Context);
+const Clock = ({time, duration}) => {
+  const [{colors}] = useContext(Context);
 
   const padNumber = (num, size) => {
     let s = "000000000" + num;
@@ -41,7 +41,7 @@ const Clock = ({ time, duration }) => {
 
   return (
     <div className={styles.clock}>
-      <svg viewBox="0 0 36 36" style={{ transform: "scaleX(-1)" }}>
+      <svg viewBox="0 0 36 36" style={{transform: "scaleX(-1)"}}>
         <circle
           className="stroke"
           cx="18"
@@ -65,12 +65,12 @@ const Clock = ({ time, duration }) => {
           }`}
           strokeDashoffset="0"
           transform="rotate(-88 18 18)"
-          style={{ transition: `9s stroke` }}
+          style={{transition: `9s stroke`}}
         ></circle>
       </svg>
       <p
         className={styles.timerNumbers}
-        style={{ color: stroke(percProgress), transition: `9s color` }}
+        style={{color: stroke(percProgress), transition: `9s color`}}
       >
         {secs}.<span className="ms">{ms}</span>
       </p>

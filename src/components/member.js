@@ -1,22 +1,14 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, {useState, useEffect, useRef, useContext} from "react";
 
-import { Context } from "./store";
+import {Context} from "./store";
 import EditMember from "./editMember";
 import RubbishIcon from "./icons/rubbish";
 import ChevronIcon from "./icons/chevron";
 import styles from "./member.module.scss";
 import formStyles from "./forms.module.scss";
 
-const Member = ({
-  name,
-  active,
-  speech,
-  mediaUrl,
-  memberIndex,
-  lastMember,
-}) => {
-  const [{ team, mode, colors }, dispatch] = useContext(Context);
-  const [inputValue, setInputValue] = useState(name);
+const Member = ({name, active, speech, mediaUrl, memberIndex, lastMember}) => {
+  const [{colors}, dispatch] = useContext(Context);
   const [editing, setEditing] = useState();
   const inputEl = useRef(null);
 
@@ -55,7 +47,7 @@ const Member = ({
       "Are you sure you wish to remove this team member?"
     );
     if (confirmDelete) {
-      return dispatch({ type: "REMOVE_TEAM_MEMBER", memberIndex: memberIndex });
+      return dispatch({type: "REMOVE_TEAM_MEMBER", memberIndex: memberIndex});
     }
   };
 

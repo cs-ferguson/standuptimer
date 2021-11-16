@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, {useState, useEffect, useContext} from "react";
 
 import Timer from "./timer";
-import { Context } from "./store";
+import {Context} from "./store";
 import CloseIcon from "./icons/close";
 import DoubleChevronIcon from "./icons/doubleChevron";
 
-import styles from "./standuptimer.module.scss";
 import formStyles from "./forms.module.scss";
 
-const Standup = ({ people }) => {
-  const [{ mode, colors }, dispatch] = useContext(Context);
+const Standup = ({people}) => {
+  const [{colors}, dispatch] = useContext(Context);
   const [timerIndex, setTimerIndex] = useState(0);
   const [timerRunning, setTimerRunning] = useState(true);
 
@@ -23,11 +22,7 @@ const Standup = ({ people }) => {
   };
 
   const exitStandup = () => {
-    return dispatch({ type: "EXIT_STANDUP" });
-  };
-  const restartStandup = () => {
-    setTimerRunning(false);
-    setTimerIndex(0);
+    return dispatch({type: "EXIT_STANDUP"});
   };
 
   const nextDisabled = timerIndex < people.length - 1 ? false : true;
@@ -83,7 +78,7 @@ const Standup = ({ people }) => {
   }, [timerIndex]);
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{width: "100%"}}>
       {/*setting key forces remount for flasher timeout to trigger!*/}
       <Timer
         key={`timer-${timerIndex}`}
@@ -98,7 +93,7 @@ const Standup = ({ people }) => {
         type="button"
         onClick={exitStandup}
         className={formStyles.iconButton}
-        style={{ position: "fixed", top: "0.5rem", right: "0.5rem" }}
+        style={{position: "fixed", top: "0.5rem", right: "0.5rem"}}
       >
         <CloseIcon color={colors.lowlightOne} />
       </button>

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import moment from "moment";
 
-import { Context } from "./store";
+import {Context} from "./store";
 import SpeechAudio from "./speechAudio";
 import Clock from "./clock";
 import Audio from "./audio";
@@ -20,8 +20,7 @@ const Timer = ({
   nextButton,
   prevButton,
 }) => {
-  const [{ settings, imageExtensions, videoExtensions }, dispatch] =
-    useContext(Context);
+  const [{settings, imageExtensions, videoExtensions}] = useContext(Context);
 
   const [mode, setMode] = useState("flasher");
   const [paused, setPaused] = useState(timerRunning === false ? true : false);
@@ -75,12 +74,12 @@ const Timer = ({
       }
     };
 
-    if (mode == "flasher") {
+    if (mode === "flasher") {
       let flasherTimer = setTimeout(() => {
         setMode("running");
       }, 4000);
       return () => clearTimeout(flasherTimer);
-    } else if (mode == "finished") {
+    } else if (mode === "finished") {
       if (!lastTimer) {
         finishTimer = setTimeout(() => {
           nextTimer();
@@ -168,7 +167,10 @@ const Timer = ({
       if (fileType) {
         if (fileType === "image") {
           elements.push(
-            <img src={settings.gongMediaUrl[mediaIndex]} role="presentation" />
+            <img
+              src={settings.gongMediaUrl[mediaIndex]}
+              alt="You to stop talking!"
+            />
           );
         }
         if (fileType === "video") {
@@ -201,7 +203,9 @@ const Timer = ({
       let fileType = getFileType(person.mediaUrl);
       if (fileType) {
         if (fileType === "image") {
-          elements.push(<img src={person.mediaUrl} role="presentation" />);
+          elements.push(
+            <img src={person.mediaUrl} alt="A hilarious background." />
+          );
         }
         if (fileType === "video") {
           elements = (
@@ -215,7 +219,7 @@ const Timer = ({
     return elements;
   };
 
-  if (mode == "flasher") {
+  if (mode === "flasher") {
     return (
       <div className={`${styles.largeNotice} ${styles.flasher}`}>
         <h1>
@@ -224,7 +228,7 @@ const Timer = ({
         {setMemberMedia()}
       </div>
     );
-  } else if (mode == "finished") {
+  } else if (mode === "finished") {
     return (
       <div className={`${styles.largeNotice} ${styles.gong}`}>
         <h1>{gongMessage()}</h1>

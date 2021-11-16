@@ -32,7 +32,7 @@ const StandupTimer = () => {
     return dispatch({type: "START_STANDUP"});
   };
 
-  if (mode == "start") {
+  if (mode === "start") {
     return (
       <>
         <Header />

@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 
-import { Context } from "./store";
+import {Context} from "./store";
 
 import styles from "./member.module.scss";
 
-const EditMember = ({ memberIndex, name, speech, active, mediaUrl }) => {
-  const [{ team, imageExtensions, videoExtensions }, dispatch] =
-    useContext(Context);
+const EditMember = ({memberIndex, name, speech, active, mediaUrl}) => {
+  const [{imageExtensions, videoExtensions}, dispatch] = useContext(Context);
 
   const onSpeechInputChange = (e) => {
     //validate length
