@@ -12,8 +12,6 @@ A stand-up timer for scrums/stand-ups.
 * Gongs them if they run out of time
 * Custom going message and background image or video.
 
-I also have a roadmap [here](https://www.notion.so/Standup-Timer-Roadmap-d7f46ae2f4df436cb48ec4a2a36abc32)
-
 ## Developers
 Uses create-react-app with little to no modifications. Run ```npm run start``` to get going.
 Uses modular css with node-sass compiler to allow the joys of sass/scss.
