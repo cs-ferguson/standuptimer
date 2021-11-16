@@ -4,6 +4,7 @@ import Member from "./member";
 import {Context} from "./store";
 import AddPersonIcon from "./icons/addPerson";
 import ChevronIcon from "./icons/chevron";
+import RubbishIcon from "./icons/rubbish";
 
 import styles from "./teamlist.module.scss";
 import formStyles from "./forms.module.scss";
@@ -38,6 +39,15 @@ const TeamList = () => {
       />
     );
   });
+
+  const onRemoveTeamButtonPress = () => {
+    let confirmDelete = window.confirm(
+      "Are you sure you wish to remove this team - it cannot be restored?"
+    );
+    if (confirmDelete) {
+      return dispatch({type: "REMOVE_TEAM", teamIndex: currentTeam});
+    }
+  };
 
   let addNewMemberButton = hideAddButton() ? null : (
     <button
@@ -76,6 +86,12 @@ const TeamList = () => {
           className={formStyles.iconButton}
         >
           <ChevronIcon color={`#fff`} rotation={270} />
+        </button>
+        <button
+          onClick={onRemoveTeamButtonPress}
+          className={formStyles.iconButton}
+        >
+          <RubbishIcon color={`#fff`} />
         </button>
       </div>
       <div ref={formEl} className={styles.teamlist}>
