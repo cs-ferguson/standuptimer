@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-
-import { useStateValue } from "../hooks/useGlobalState";
+import React, {useState, useContext} from "react";
 
 import TeamList from "./teamlist";
 import Standup from "./standup";
 import Header from "./header";
+import {Context} from "./store";
 
 import styles from "./standuptimer.module.scss";
 import formStyles from "./forms.module.scss";
 
 const StandupTimer = () => {
-  const [{ mode, teams, currentTeam }, dispatch] = useStateValue();
+  const [{teams, currentTeam, mode}, dispatch] = useContext(Context);
   const [people, setPeople] = useState();
 
   const shufflePeople = (people) => {
@@ -30,7 +29,7 @@ const StandupTimer = () => {
       }
     });
     setPeople(shufflePeople(newPeople));
-    return dispatch({ type: "START_STANDUP" });
+    return dispatch({type: "START_STANDUP"});
   };
 
   if (mode == "start") {
