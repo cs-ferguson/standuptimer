@@ -1,5 +1,5 @@
-import React, { createContext, useReducer } from "react";
-import { Reducer } from "../utilities/reducer";
+import React, {createContext, useReducer} from "react";
+import {Reducer} from "../utilities/reducer";
 import Storage from "../utilities/storage";
 
 const storage = new Storage();
@@ -89,19 +89,7 @@ let colors =
 
 const initialState = {
   mode: "start",
-  teams: [
-    {
-      name: "My Team",
-      members: [
-        {
-          name: "Team Member Here...",
-          active: true,
-          speech: "Team Member",
-          mediaUrl: null,
-        },
-      ],
-    },
-  ],
+  teams: getTeams(),
   currentTeam: 0,
   colors: colors,
   imageExtensions: ["gif", "jpg", "jpeg", "png"],
@@ -110,7 +98,7 @@ const initialState = {
 };
 console.log(getTeams());
 
-const Store = ({ children }) => {
+const Store = ({children}) => {
   const [state, dispatch] = useReducer(Reducer, initialState);
   return (
     <Context.Provider value={[state, dispatch]}>{children}</Context.Provider>
