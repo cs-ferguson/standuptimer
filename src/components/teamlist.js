@@ -49,6 +49,16 @@ const TeamList = () => {
     }
   };
 
+  const removeTeamButton =
+    teams.length > 1 ? (
+      <button
+        onClick={onRemoveTeamButtonPress}
+        className={formStyles.iconButton}
+      >
+        <RubbishIcon color={`#fff`} />
+      </button>
+    ) : null;
+
   let addNewMemberButton = hideAddButton() ? null : (
     <button
       className={`${styles.addNewMemberButton} ${formStyles.textButton}`}
@@ -87,12 +97,7 @@ const TeamList = () => {
         >
           <ChevronIcon color={`#fff`} rotation={270} />
         </button>
-        <button
-          onClick={onRemoveTeamButtonPress}
-          className={formStyles.iconButton}
-        >
-          <RubbishIcon color={`#fff`} />
-        </button>
+        {removeTeamButton}
       </div>
       <div ref={formEl} className={styles.teamlist}>
         {teamDeets}
