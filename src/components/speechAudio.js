@@ -3,17 +3,7 @@ import React, {useEffect} from "react";
 const SpeechAudio = ({word}) => {
   useEffect(() => {
     const createSpeech = () => {
-      let languages = [
-        "en-GB",
-        "en-US",
-        "en-AU",
-        "es-ES",
-        "cs-CZ",
-        "it-IT",
-        "pl-PL",
-        "ru-RU",
-        "fr-FR",
-      ];
+      let languages = ["en-GB", "en-US", "en-AU"];
       let speech = new SpeechSynthesisUtterance();
 
       let languageIndex = Math.floor(languages.length * Math.random());
