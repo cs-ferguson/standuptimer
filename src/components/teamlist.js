@@ -5,6 +5,7 @@ import {Context} from "./store";
 import AddPersonIcon from "./icons/addPerson";
 import ChevronIcon from "./icons/chevron";
 import RubbishIcon from "./icons/rubbish";
+import AddIcon from "./icons/add";
 
 import styles from "./teamlist.module.scss";
 import formStyles from "./forms.module.scss";
@@ -71,8 +72,22 @@ const TeamList = () => {
   );
 
   let prevTeamButtonDisabled = currentTeam > 0 ? false : true;
-  let nextTeamButtonAction =
-    currentTeam < teams.length - 1 ? "MOVE_TO_NEXT_TEAM" : "ADD_NEW_TEAM";
+  let nextTeamButton =
+    currentTeam < teams.length - 1 ? (
+      <button
+        onClick={() => dispatch({type: "MOVE_TO_NEXT_TEAM"})}
+        className={formStyles.iconButton}
+      >
+        <ChevronIcon color={`#fff`} rotation={270} />
+      </button>
+    ) : (
+      <button
+        onClick={() => dispatch({type: "ADD_NEW_TEAM"})}
+        className={formStyles.iconButton}
+      >
+        <AddIcon color={`#fff`} />
+      </button>
+    );
 
   return (
     <section className={styles.teamlistCont}>
@@ -91,12 +106,7 @@ const TeamList = () => {
             dispatch({type: "UPDATE_TEAM_NAME", teamName: e.target.value})
           }
         />
-        <button
-          onClick={() => dispatch({type: nextTeamButtonAction})}
-          className={formStyles.iconButton}
-        >
-          <ChevronIcon color={`#fff`} rotation={270} />
-        </button>
+        {nextTeamButton}
         {removeTeamButton}
       </div>
       <div ref={formEl} className={styles.teamlist}>
